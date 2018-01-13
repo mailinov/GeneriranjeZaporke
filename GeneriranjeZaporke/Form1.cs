@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,16 +19,7 @@ namespace GeneriranjeZaporke
             InitializeComponent();   
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             generiraj();
@@ -35,23 +27,21 @@ namespace GeneriranjeZaporke
 
         private void generiraj()
         {
-            if (checkBox1.Checked)
-                textBox1.Text = Class1.GeneratePassword(2, 3, 0, 0);
-            else if (checkBox2.Checked)
-                textBox1.Text = Class1.GeneratePassword(0, 0, 5, 0);
-            else if (checkBox3.Checked)
-                textBox1.Text = Class1.GeneratePassword(0, 0, 0, 5);
-            //textBox1.Text = "nesto";
+                textBox1.Text = Class1.GeneratePassword(checkBox1.Checked,
+                    checkBox2.Checked, checkBox3.Checked, numericUpDown1.Value);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-           
+            StreamWriter File = new StreamWriter("test.txt");
+            File.Write(textBox1.Text);
+            File.Close();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -63,8 +53,17 @@ namespace GeneriranjeZaporke
         {
 
         }
+        private void label1_Click(object sender, EventArgs e)
+        {
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
 
         }

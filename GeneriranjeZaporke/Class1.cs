@@ -10,10 +10,7 @@ namespace GeneriranjeZaporke
     {
         public static string GeneratePassword(bool prvi, bool drugi, bool treci, object broj)
         {
-            //int lowercase = 2;
-            //int uppercase = 2;
-            //int numerics = 2;
-            //int znak = 2;    
+            
             int m = Convert.ToInt32(broj);
 
             string lowers = "abcdefghijklmnopqrstuvwxyz";
@@ -26,15 +23,15 @@ namespace GeneriranjeZaporke
             string generated = "";
             string generated2 = "";
             string generated3 = "";
-            string generated4 = "";
-            string generated5 = "";
+            string generated12 = "";
+            string generated13 = "";
+            string generated23 = "";
 
             for (int i = 1; i <= m; i++)
                 generated = generated.Insert(
                     random.Next(generated.Length),
                     lowers[random.Next(lowers.Length - 1)].ToString()
                 );
-            
 
             for (int i = 1; i <= m; i++)
                 generated = generated.Insert(
@@ -52,25 +49,43 @@ namespace GeneriranjeZaporke
                     random.Next(generated3.Length),
                     znakovi[random.Next(znakovi.Length - 1)].ToString()
                 );
-            for (int i = 1; i < m; i++)
+            for (int i = 1; i <= m; i++)
             {
                 if (random.Next(1000) % 2 == 0)
-                    generated5 += generated[i];
+                    generated12 += generated[i];
                 else
-                {
-
-                    generated5 += generated2[i];
-                }
+                    generated12 += generated2[i];
             }
+            for (int i = 1; i <= m; i++)
+            {
+                if (random.Next(1000) % 2 == 0)
+                    generated13 += generated[i];
+                else
+                    generated13 += generated3[i];
+            }
+            for (int i = 1; i <= m; i++)
+            {
+                if (random.Next(1000) % 2 == 0)
+                    generated23 += generated2[i];
+                else
+                    generated23 += generated3[i];
+            }
+
+
             //return generated;//.Replace("!", string.Empty);
-
-
-
             if (prvi && drugi)
             {
-                return generated5;
+                return generated12;
             }
-            else if (prvi)
+            else if (prvi&&treci)
+            {
+                return generated13;
+            }
+            else if (drugi&&treci)
+            {
+                return generated23;
+            }
+            if (prvi)
             {
                 return generated = generated.Substring(0, m);
             }
@@ -78,14 +93,13 @@ namespace GeneriranjeZaporke
             {
                 return generated2;
             }
-            else if (treci)
+            else //if (treci)
             {
                 return generated3;
             }
-            
-            else
-            return generated4 = (string.Concat(generated, generated2, generated3));
- 
+
+
+
         }
     }
 }

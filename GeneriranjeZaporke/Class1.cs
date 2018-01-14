@@ -49,21 +49,21 @@ namespace GeneriranjeZaporke
                     random.Next(generated3.Length),
                     znakovi[random.Next(znakovi.Length - 1)].ToString()
                 );
-            for (int i = 1; i <= m; i++)
+            for (int i = 0; i <= m-1; i++)
             {
                 if (random.Next(1000) % 2 == 0)
                     generated12 += generated[i];
                 else
                     generated12 += generated2[i];
             }
-            for (int i = 1; i <= m; i++)
+            for (int i = 0; i <= m-1; i++)
             {
                 if (random.Next(1000) % 2 == 0)
                     generated13 += generated[i];
                 else
                     generated13 += generated3[i];
             }
-            for (int i = 1; i <= m; i++)
+            for (int i = 0; i <= m-1; i++)
             {
                 if (random.Next(1000) % 2 == 0)
                     generated23 += generated2[i];

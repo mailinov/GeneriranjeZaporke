@@ -26,6 +26,7 @@ namespace GeneriranjeZaporke
             string generated12 = "";
             string generated13 = "";
             string generated23 = "";
+            string generated123 = "";
 
             for (int i = 1; i <= m; i++)
                 generated = generated.Insert(
@@ -49,43 +50,57 @@ namespace GeneriranjeZaporke
                     random.Next(generated3.Length),
                     znakovi[random.Next(znakovi.Length - 1)].ToString()
                 );
+           
+            
             for (int i = 0; i <= m-1; i++)
             {
-                if (random.Next(1000) % 2 == 0)
-                    generated12 += generated[i];
-                else
-                    generated12 += generated2[i];
-            }
-            for (int i = 0; i <= m-1; i++)
-            {
-                if (random.Next(1000) % 2 == 0)
-                    generated13 += generated[i];
-                else
-                    generated13 += generated3[i];
-            }
-            for (int i = 0; i <= m-1; i++)
-            {
-                if (random.Next(1000) % 2 == 0)
+                if (i % 2 == 0)
                     generated23 += generated2[i];
                 else
                     generated23 += generated3[i];
             }
 
+            for (int i = 0; i <= m - 1; i++)
+            {
+                if (i % 2 != 0)
+                    generated123 += generated[i];
+                else
+                    generated123 += generated23[i/2];
+            }
+
 
             //return generated;//.Replace("!", string.Empty);
-            if (prvi && drugi)
+            if(prvi && drugi && treci)
             {
+                return generated123;
+            }
+            else if (prvi && drugi)
+            {
+                for (int i = 0; i <= m - 1; i++)
+                {
+                    if (i % 2 == 0)
+                        generated12 += generated[i];
+                    else
+                        generated12 += generated2[i];
+                }
                 return generated12;
             }
             else if (prvi&&treci)
             {
+                for (int i = 0; i <= m - 1; i++)
+                {
+                    if (i % 2 == 0)
+                        generated13 += generated[i];
+                    else
+                        generated13 += generated3[i];
+                }
                 return generated13;
             }
             else if (drugi&&treci)
             {
                 return generated23;
             }
-            if (prvi)
+            else if (prvi)
             {
                 return generated = generated.Substring(0, m);
             }
@@ -93,11 +108,14 @@ namespace GeneriranjeZaporke
             {
                 return generated2;
             }
-            else //if (treci)
+            else if (treci)
             {
                 return generated3;
             }
-
+            else //if (treci)
+            {
+                return generated123;
+            }
 
 
         }

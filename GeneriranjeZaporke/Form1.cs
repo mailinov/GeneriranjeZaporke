@@ -16,7 +16,8 @@ namespace GeneriranjeZaporke
     {
         public Form1()
         {
-            InitializeComponent();   
+            InitializeComponent();
+            
         }
 
         
@@ -28,7 +29,7 @@ namespace GeneriranjeZaporke
         private void generiraj()
         {
                 textBox1.Text = Class1.GeneratePassword(checkBox1.Checked,
-                    checkBox2.Checked, checkBox3.Checked, numericUpDown1.Value);
+                    checkBox2.Checked, checkBox3.Checked, numericUpDown1.Value);           
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -37,7 +38,6 @@ namespace GeneriranjeZaporke
             File.Write(textBox1.Text);
             File.Close();
         }
-
         
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -67,5 +67,6 @@ namespace GeneriranjeZaporke
         {
 
         }
+        
     }
 }

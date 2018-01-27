@@ -27,9 +27,11 @@ namespace GeneriranjeZaporke
         }
 
         private void generiraj()
+            
         {
-                textBox1.Text = Class1.GeneratePassword(checkBox1.Checked,
-                    checkBox2.Checked, checkBox3.Checked, numericUpDown1.Value);           
+            int m = Convert.ToInt32(numericUpDown1.Value);
+            textBox1.Text = Class1.GeneratePassword(checkBox1.Checked,
+                    checkBox2.Checked, checkBox3.Checked, m);           
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

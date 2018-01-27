@@ -8,116 +8,75 @@ namespace GeneriranjeZaporke
 {
     class Class1
     {
-        public static string GeneratePassword(bool prvi, bool drugi, bool treci, object broj)
+        public static string GeneratePassword(bool prvi, bool drugi, bool treci, int passwordLength)
         {
-            
-            int m = Convert.ToInt32(broj);
-
             string lowers = "abcdefghijklmnopqrstuvwxyz";
             string uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             string number = "0123456789";
             string znakovi = "*$-+?_&=!%{}/";
 
-            Random random = new Random();
-          
-            string generated = "";
-            string generated2 = "";
-            string generated3 = "";
-            string generated12 = "";
-            string generated13 = "";
-            string generated23 = "";
-            string generated123 = "";
 
-            for (int i = 1; i <= m; i++)
-                generated = generated.Insert(
-                    random.Next(generated.Length),
-                    lowers[random.Next(lowers.Length - 1)].ToString()
-                );
+            string allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789*$-+?_&=!%{}/";
 
-            for (int i = 1; i <= m; i++)
-                generated = generated.Insert(
-                    random.Next(generated.Length),
-                    uppers[random.Next(uppers.Length - 1)].ToString()
-                );
+            char[] chars = new char[passwordLength];
 
-            for (int i = 1; i <= m; i++)
-                generated2 = generated2.Insert(
-                    random.Next(generated2.Length),
-                    number[random.Next(number.Length - 1)].ToString()
-                );
-            for (int i = 1; i <= m; i++)
-                generated3 = generated3.Insert(
-                    random.Next(generated3.Length),
-                    znakovi[random.Next(znakovi.Length - 1)].ToString()
-                );
-           
-            
-            for (int i = 0; i <= m-1; i++)
+            Random rd = new Random();
+
+
+
+            for (int i = 0; i < passwordLength; i++)
             {
-                if (i % 2 == 0)
-                    generated23 += generated2[i];
-                else
-                    generated23 += generated3[i];
-            }
-
-            for (int i = 0; i <= m - 1; i++)
-            {
-                if (i % 2 != 0)
-                    generated123 += generated[i];
-                else
-                    generated123 += generated23[i/2];
+                chars[i] = allowedChars[rd.Next(0, allowedChars.Length)];
             }
 
 
-            //return generated;//.Replace("!", string.Empty);
-            if(prvi && drugi && treci)
+            if (prvi && drugi && treci)
             {
-                return generated123;
+                chars[0] = lowers[rd.Next(0, lowers.Length)];
+                chars[1] = uppers[rd.Next(0, lowers.Length)];
+                chars[2] = number[rd.Next(0, number.Length)];
+                chars[3] = znakovi[rd.Next(0, znakovi.Length)];
+
+                return new string(chars);
             }
+
             else if (prvi && drugi)
             {
-                for (int i = 0; i <= m - 1; i++)
-                {
-                    if (i % 2 == 0)
-                        generated12 += generated[i];
-                    else
-                        generated12 += generated2[i];
-                }
-                return generated12;
+                chars[0] = lowers[rd.Next(0, lowers.Length)];
+                chars[1] = uppers[rd.Next(0, lowers.Length)];
+                chars[2] = number[rd.Next(0, number.Length)];
+
+                return new string(chars);
             }
-            else if (prvi&&treci)
+
+            else if (prvi && treci)
             {
-                for (int i = 0; i <= m - 1; i++)
-                {
-                    if (i % 2 == 0)
-                        generated13 += generated[i];
-                    else
-                        generated13 += generated3[i];
-                }
-                return generated13;
+                chars[0] = lowers[rd.Next(0, lowers.Length)];
+                chars[1] = uppers[rd.Next(0, lowers.Length)];
+                chars[2] = znakovi[rd.Next(0, znakovi.Length)];
+
+                return new string(chars);
             }
-            else if (drugi&&treci)
-            {
-                return generated23;
-            }
+
             else if (prvi)
             {
-                return generated = generated.Substring(0, m);
+                chars[0] = lowers[rd.Next(0, lowers.Length)];
+                chars[1] = uppers[rd.Next(0, lowers.Length)];
+                return new string(chars);
             }
             else if (drugi)
             {
-                return generated2;
-            }
-            else if (treci)
-            {
-                return generated3;
-            }
-            else //if (treci)
-            {
-                return generated123;
+                chars[0] = number[rd.Next(0, number.Length)];
+                return new string(chars);
             }
 
-
+            else
+            {
+                chars[0] = znakovi[rd.Next(0, znakovi.Length)];
+                return new string(chars);
+            }
         }
+
     }
-}
+    }
+

@@ -18,6 +18,8 @@ namespace GeneriranjeZaporke
         {
             InitializeComponent();
             
+
+
         }
 
         
@@ -36,7 +38,7 @@ namespace GeneriranjeZaporke
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            StreamWriter File = new StreamWriter("test.txt");
+            StreamWriter File = new StreamWriter(DateTime.Now.ToString("dd/MM/yyyy") + ".txt");
             File.Write(textBox1.Text);
             File.Close();
         }
